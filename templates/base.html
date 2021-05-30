@@ -1,4 +1,10 @@
 {% url 'cities:home' as cities_home_url %}
+{% url 'trains:home' as trains_home_url %}
+{% url 'cities:add' as cities_add_url %}
+{% url 'trains:add' as trains_add_url %}
+
+
+
 
 <!doctype html>
 <html lang="en">
@@ -27,19 +33,18 @@
           <a class="nav-link {% if request.path == cities_home_url %}active{% endif %}" aria-current="page" href="{% url 'cities:home' %}">Cities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link {% if request.path == trains_home_url %}active{% endif %}" href="{% url 'trains:home' %}">Trains</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown {% if request.path == train_add_url or request.path == city_add_url %}active{% endif %}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
+            Add...
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="{% url 'cities:add' %}">City</a></li>
+            <li><a class="dropdown-item" href="{% url 'trains:add' %}">Train</a></li>
           </ul>
         </li>
       </ul>
@@ -54,17 +59,17 @@
       {% if messages %}
         {% for message in messages %}
           {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            <div  class="alert alert-danger alert-dismissable fade show">
+            <div  class="alert alert-danger messages alert-dismissable fade show">
               <span  {% if message.tags %} class="{{ message.tags }}"{% endif %}>Warning! {{ message }} </span>
                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           {%else %}
-            <div class="alert alert-success alert-dismissable fade show" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                </svg>
-              <span  {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} </span>
-               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert alert-success messages alert-dismissible fade show">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+              </svg>
+               <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           {% endif %}
         {% endfor %}

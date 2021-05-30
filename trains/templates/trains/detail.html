@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Train{% endblock title %}
+
+{% block content %}
+    <h1 class="display-4">Train</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Train name: {{object.name}}</p>
+        </div>
+
+        <table class="table table-striped">
+            <tbody>
+                <thead>
+                    <tr>
+                        <th>Number of train</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Travel time</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                         {{object.name}}
+                        {# <a href="{% url 'trains:detail' pk=object.id %}">{{object.name}}</a> #}
+                    </td>
+                    <td>{{ object.from_city }}</td>
+                    <td>{{ object.to_city}}</td>
+                    <td>{{ object.travel_time}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'trains:home' %}">
+                <button type="button" class="btn btn-light">
+                    Back to the list
+                </button>
+            </a>
+        </div>
+    </div>
+{% endblock content %}

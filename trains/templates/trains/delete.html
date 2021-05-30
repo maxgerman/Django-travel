@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Deletion of the train{% endblock title %}
+{% block content %}
+<h1 class="display-4">Deleting the train</h1>
+
+<!--<div class="row mx-auto">-->
+<!--    <div class="col-md-4">-->
+<!--        <form method="post">{% csrf_token %}-->
+<!--            <p>Are you sure you want to delete "{{ object }}"?</p>-->
+<!--            <input type="submit" value="Confirm">-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<p>Are you sure you want to delete "{{ object }}"?</p>
+{% include 'form.html' with value='Delete' button_class='btn btn-outline-danger' %}
+{% endblock content %}
