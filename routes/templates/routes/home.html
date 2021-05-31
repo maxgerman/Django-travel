@@ -1,6 +1,46 @@
 {% extends "base.html" %}
+
 {% block title%}Route search{% endblock%}
+
 {% block content%}
-<h1 class="text-center my-4">Route search</h1>
-{% include 'form.html' with value='Find' %}
+    <h1 class="text-center my-4">Route search</h1>
+
+    <div class="row ">
+        {% if routes %}
+            <div class='col-md-8 mx-auto'>
+                <h3>
+                    {% if routes|length == 1%}
+                        Route from {{cities.from_city}} to {{cities.to_city}}
+
+                    {% else %}
+                        Routes from {{cities.from_city}} to {{cities.to_city}} ({{ routes|length }})
+
+                    {% endif %}
+                </h3>
+            <hr>
+            {% for route in routes %}
+                {% if forloop.first %}<h5> The quickest route </h5>{% endif %}
+                <table class="table table-striped">
+                    <thead> <tr> <th> List of trains</th></tr></thead>
+                <tbody>
+                    {% for train in route.trains %}
+                        <tr> <td>
+                                Train <strong> №{{train.name}}</strong> from
+                            {{train.from_city}} to {{train.to_city}}.
+                            Travel time {{train.travel_time}}
+                        </td> </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                <p>Total travel time {{route.total_time}} </p><br/><hr>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+
+    <div class='col-md-8 mx-auto'>
+        {{ways}}
+        {% url 'find_routes' as find_routes_url %}
+        {% include 'form.html' with value='Find' action=find_routes_url  %}
+    </div>
 {% endblock %}
