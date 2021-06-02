@@ -7,11 +7,11 @@ class Route(models.Model):
     travel_times = models.PositiveIntegerField(verbose_name='Total travel time')
     from_city = models.ForeignKey(
         City, on_delete=models.CASCADE, related_name='route_from_city_set',
-        verbose_name='Из какого города')
+        verbose_name='From which city')
     to_city = models.ForeignKey(
         'cities.City', on_delete=models.CASCADE, related_name='route_to_city_set',
-        verbose_name='В какой город')
-    trains = models.ManyToManyField('trains.Train', verbose_name='Список поездов')
+        verbose_name='To which city')
+    trains = models.ManyToManyField('trains.Train', verbose_name='List of trains')
 
     def __str__(self):
         return f'Route {self.name} ({self.from_city} - {self.to_city})'

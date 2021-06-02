@@ -41,7 +41,7 @@ def get_routes(request, form):
     '''
     # import time as _t
     # start = _t.time()
-    qs = Train.objects.all().order_by('travel_time')
+    qs = Train.objects.all().select_related('from_city', 'to_city').order_by('travel_time')
     data = form.cleaned_data
     from_city = data['from_city']
     to_city = data['to_city']
@@ -93,7 +93,7 @@ def get_routes(request, form):
         # которые удовлетворяли бы заданным условиям
         raise ValueError('Total travel time exceeds the requirement')
 
-    cities = {'from_city': from_city.name, 'to_city': to_city.name}
+    cities = {'from_city': from_city, 'to_city': to_city}
 
     if len(routes) == 1:
         sorted_routes = routes

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title%}Saving the route{% endblock%}
+{% block content%}
+<h1 class="display-4">Save the route</h1>
+{% url 'save_route' as save_route_url %}
+{% include 'form.html' with value='Save route' action=save_route_url%}
+{% endblock%}

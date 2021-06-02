@@ -39,7 +39,7 @@
           <a class="nav-link {% if request.path == trains_home_url %}active{% endif %}" href="{% url 'trains:home' %}">Trains</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="{% url 'list' %}">Routes</a>
         </li>
         <li class="nav-item dropdown {% if request.path == train_add_url or request.path == city_add_url %}active{% endif %}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
