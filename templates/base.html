@@ -4,7 +4,7 @@
 {% url 'trains:add' as trains_add_url %}
 {% url 'list' as routes_home_url %}
 
-
+{% load static %}
 
 <!doctype html>
 <html lang="en">
@@ -20,6 +20,12 @@
 
 <!--    Select2 CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+<!--    Font Awesome icons-->
+    <script src="https://kit.fontawesome.com/827ed77bdd.js" crossorigin="anonymous"></script>
+
+<!--    My CSS-->
+    <link rel="stylesheet" href="{% static 'travel.css' %}">
 
     <title>{% block title %}{% endblock title %}</title>
   </head>
@@ -65,7 +71,7 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ">
-          <a class="nav-link" href="{% url 'accounts:logout'%} ">Logout</a>
+          <a class="nav-link" href="{% url 'accounts:logout'%} "> <i class="fas fa-user"></i> {{ user.get_username }} (Logout)</a>
         </li>
 
         {% else %}
@@ -77,7 +83,11 @@
 
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:login'%} ">Sign in</a>
+          <a class="nav-link" href="{% url 'accounts:login'%} "> <i class="fas fa-user"></i> Sign in</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:register'%} "> Register</a>
         </li>
 
         {% endif %}
