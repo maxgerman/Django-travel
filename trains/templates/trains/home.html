@@ -8,7 +8,7 @@ List of trains
 {% block content%}
     <h1 class="text-center">List of trains</h1>
         <div class="row">
-            <div class="col-8 mx-auto">
+            <div class="col-md-6 mx-auto">
                 <table class="table table-striped">
                     <tbody>
                         <thead>
@@ -32,12 +32,12 @@ List of trains
                                 <td>{{ object.travel_time}}</td>
                                 <td>
                                     <a href="{% url 'trains:update' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit">Edit</button>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{% url 'trains:delete' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to delete">Delete</button>
                                     </a>
                                 </td>
                             </tr>

@@ -6,6 +6,8 @@
 Список городов
 {% endblock title%}
 
+
+
 {% block content%}
     <h1>List of cities</h1>
         <div class="row">
@@ -19,12 +21,12 @@
                                 </td>
                                 <td>
                                     <a href="{% url 'cities:update' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm" {% if user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit" {% endif %}>Edit</button>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{% url 'cities:delete' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" {% if user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to delete" {% endif %}>Delete</button>
                                     </a>
                                 </td>
                             </tr>
@@ -69,7 +71,7 @@
     {% if page_obj.has_next %}
 
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
             <span aria-hidden="true">{{ page_obj.next_page_number }}</span>
           </a>
         </li>

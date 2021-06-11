@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -23,7 +24,7 @@ def home(request, pk=None):
     #     return render(request, 'cities/detail.html', context)
     form = CityForm()
     cities = City.objects.all()
-    paginator = Paginator(cities, 2)
+    paginator = Paginator(cities, 5)
     page = request.GET.get('page')
     cities = paginator.get_page(page)
     context = {'page_obj': cities, 'form': form}
@@ -36,7 +37,8 @@ class CityDetailView(DetailView):
     template_name = 'cities/detail.html'
 
 
-class CityCreateView(SuccessMessageMixin, CreateView):
+class CityCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    login_url = 'cities:home'  # works without it
     model = City
     form_class = CityForm
     template_name = 'cities/create.html'
@@ -44,7 +46,7 @@ class CityCreateView(SuccessMessageMixin, CreateView):
     success_message = 'The city has been created successfully'
 
 
-class CityUpdateView(SuccessMessageMixin, UpdateView):
+class CityUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = City
     form_class = CityForm
     template_name = 'cities/update.html'
@@ -52,7 +54,7 @@ class CityUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'The city has been updated'
 
 
-class CityDeleteView(SuccessMessageMixin, DeleteView):
+class CityDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = City
     template_name = 'cities/delete.html'
     success_url = reverse_lazy('cities:home')
@@ -65,8 +67,9 @@ class CityDeleteView(SuccessMessageMixin, DeleteView):
 class CityListView(ListView):
     model = City
     template_name = 'cities/home.html'
-    paginate_by = 2
+    paginate_by = 5
 
+     # if we need form on the city list page we include it into the context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = CityForm()

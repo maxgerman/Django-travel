@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView
 
@@ -10,7 +11,7 @@ from trains.models import Train
 
 
 def home(request):
-    form = RouteForm()
+    form = RouteForm()  # data={'from_city': City.objects.first(), 'to_city': City.objects.last()})
     return render(request, 'routes/home.html', {'form': form})
 
 
@@ -30,6 +31,7 @@ def find_routes(request):
         return render(request, 'routes/home.html', {'form': form})
 
 
+@login_required()
 def add_route(request):
     if request.method == 'POST':
         data = request.POST
