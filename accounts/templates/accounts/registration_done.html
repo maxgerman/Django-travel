@@ -2,8 +2,8 @@
 {% block title%}Log-in{% endblock%}
 {% block content%}
 
-<h1 class="display-4">Hello, {{ new_user.username }}!</h1>
+<h1 class="display-4">Hello, {{ new_user.get_username }}!</h1>
 <h3>You have been registered</h3>
 <h4>You can now <a href="{% url 'accounts:login' %}">sign-in</a></h4>
 
-{% endblock%}
+{% endblock %}
