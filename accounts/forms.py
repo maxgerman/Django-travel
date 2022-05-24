@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import PasswordChangeForm
 
 User = get_user_model()
 
@@ -43,3 +44,8 @@ class UserRegistrationForm(forms.ModelForm):
         if data['password'] != data['password2']:
             raise forms.ValidationError('Passwords mismatch')
         return data['password']
+
+
+class PwdChangeForm(PasswordChangeForm):
+    error_messages = None
+

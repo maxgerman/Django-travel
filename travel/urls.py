@@ -28,4 +28,5 @@ urlpatterns = [
     path('list/', RouteListView.as_view(), name='list'),
     path('detail/<int:pk>/', RouteDetailView.as_view(), name='detail'),
     path('accounts/', include(('accounts.urls', 'accounts'))),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
