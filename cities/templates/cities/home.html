@@ -21,7 +21,7 @@
                                 </td>
                                 <td>
                                     <a href="{% url 'cities:update' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-primary btn-sm" {% if user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit" {% endif %}>Edit</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm" {% if  user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit" {% endif %}>Edit</button>
                                     </a>
                                 </td>
                                 <td>

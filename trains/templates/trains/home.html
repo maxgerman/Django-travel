@@ -32,12 +32,12 @@ List of trains
                                 <td>{{ object.travel_time}}</td>
                                 <td>
                                     <a href="{% url 'trains:update' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit">Edit</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm"  {% if  user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to edit" {% endif %} >Edit</button>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{% url 'trains:delete' pk=object.id %}">
-                                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to delete">Delete</button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" {% if user.is_authenticated is False %} data-bs-toggle="tooltip" data-bs-placement="top" title="Sign-in to delete"{% endif %}>Delete</button>
                                     </a>
                                 </td>
                             </tr>
