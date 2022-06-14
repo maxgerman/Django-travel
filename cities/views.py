@@ -69,7 +69,7 @@ class CityListView(ListView):
     template_name = 'cities/home.html'
     paginate_by = 5
 
-     # if we need form on the city list page we include it into the context
+    # if we need form on the city list page we include it into the context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = CityForm()

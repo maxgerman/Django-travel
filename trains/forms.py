@@ -9,7 +9,7 @@ class TrainForm(forms.ModelForm):
         fields = ('name', 'from_city', 'to_city', 'travel_time')
 
     name = forms.CharField(
-        label='Поезд',
+        label='Train',
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Enter train number'}))
     from_city = forms.ModelChoiceField(

@@ -5,6 +5,7 @@ from routes.models import Route
 
 
 class RouteForm(forms.Form):
+    """ Used for searching for the route """
     from_city = forms.ModelChoiceField(label='From:', queryset=City.objects.all(), widget=forms.Select(
         attrs={'class': 'form-control js-example-basic-single'}), initial=1)
     to_city = forms.ModelChoiceField(label='To:', queryset=City.objects.all(), widget=forms.Select(
@@ -19,6 +20,7 @@ class RouteForm(forms.Form):
 
 
 class RouteModelForm(forms.ModelForm):
+    """ Used for naming (the only visible field) and saving the route"""
     name = forms.CharField(label='Route name', widget=forms.TextInput(attrs={
         'class': 'form-control', 'placeholder': 'Enter the name'}))
     from_city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.HiddenInput())
